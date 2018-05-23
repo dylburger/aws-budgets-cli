@@ -1,0 +1,55 @@
+Description: "Budget"
+
+Parameters:
+    BudgetThreshold:
+        Type: Number
+        Description: "Budget in USD"
+        Default: 20
+    AdminEmail:
+        Type: String
+        Description: "Email address to which you want budget notifications delivered"
+    ActualThresholdPercentage:
+        Type: Number
+        Description: "Notify me when we actually spend this percentage of our budget"
+        Default: 70
+    ForecastedThresholdPercentage:
+        Type: Number
+        Description: "Notify me of when we're forecasted to hit this percentage of budget"
+        Default: 80
+
+Resources:
+    Budget:
+        Type: "AWS::Budgets::Budget"
+        Properties:
+            Budget:
+                BudgetLimit:
+                    Amount: !Ref BudgetThreshold
+                    Unit: USD
+                TimeUnit: MONTHLY
+                BudgetType: COST
+            NotificationsWithSubscribers:
+                - Notification:
+                    NotificationType: ACTUAL
+                    ComparisonOperator: GREATER_THAN
+                    Threshold: 99
+                  Subscribers:
+                      - SubscriptionType: EMAIL
+                        Address: !Ref AdminEmail
+                - Notification:
+                    NotificationType: ACTUAL
+                    ComparisonOperator: GREATER_THAN
+                    Threshold: !Ref ActualThresholdPercentage
+                  Subscribers:
+                      - SubscriptionType: EMAIL
+                        Address: !Ref AdminEmail
+                - Notification:
+                    NotificationType: FORECASTED
+                    ComparisonOperator: GREATER_THAN
+                    Threshold: !Ref ForecastedThresholdPercentage
+                  Subscribers:
+                    - SubscriptionType: EMAIL
+                      Address: !Ref AdminEmail
+
+Outputs:
+  BudgetId:
+    Value: !Ref Budget
