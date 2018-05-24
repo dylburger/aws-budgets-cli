@@ -16,13 +16,18 @@ def check_if_boto_response_is_successful(response):
 
 class CloudFormationClient():
 
-    def __init__(self, admin_email, stack_name='aws-budgets', profile=None):
+    def __init__(self,
+                 admin_email,
+                 budget,
+                 stack_name='aws-budgets',
+                 profile=None):
         if profile:
             boto3.setup_default_session(profile_name=profile)
 
         self.client = boto3.client('cloudformation')
         self.stack_name = stack_name
         self.admin_email = admin_email
+        self.budget = budget
 
     def _does_budget_stack_exist(self):
         # If this succeeds, the stack exists
@@ -44,6 +49,9 @@ class CloudFormationClient():
             Parameters=[{
                 'ParameterKey': 'AdminEmail',
                 'ParameterValue': self.admin_email,
+            }, {
+                'ParameterKey': 'BudgetThreshold',
+                'ParameterValue': self.budget,
             }])
 
         if not check_if_boto_response_is_successful(response):
