@@ -39,9 +39,12 @@ class CloudFormationClient():
             return False
 
     def create_stack(self):
+        """ Creates CloudFormation stack for budgets, if it does not yet exist.
+            Returns True if successful
+        """
         if self._does_budget_stack_exist():
-            print("%s CloudFormation Stack already exists!" % self.stack_name)
-            return
+            print("%s CloudFormation stack already exists!" % self.stack_name)
+            return False
 
         response = self.client.create_stack(
             StackName=self.stack_name,
@@ -56,3 +59,6 @@ class CloudFormationClient():
 
         if not check_if_boto_response_is_successful(response):
             print("Failed to create CloudFormation stack!")
+            return False
+
+        return response.get('StackId')

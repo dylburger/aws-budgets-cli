@@ -15,9 +15,11 @@ def generate_new_budget(profile):
             click.style("Enter your budget in USD", bold=True), type=str)
     click.echo(f'Creating a new budget of {click.style("$" + budget, fg="green")}')
 
-    # Create a new CloudFormation client to create budget
+    # Create a new CloudFormation client to manage budgets
     cfclient = CloudFormationClient(admin_email, budget, profile=profile)
-    cfclient.create_stack()
+    stackid = cfclient.create_stack()
+    if stackid:
+        click.echo(f'Created CloudFormation stack to manage budgets: {stackid}')
 
 
 
