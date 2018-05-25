@@ -2,7 +2,7 @@ import boto3
 from botocore.exceptions import ClientError
 from pkg_resources import resource_filename
 
-TEMPLATE_FILE = 'resources/budgets.template.yaml'
+TEMPLATE_FILE = 'budgets.template.yaml'
 
 
 def read_cf_template():
