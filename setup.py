@@ -9,7 +9,7 @@ setup(
     long_description=long_description,
     long_description_content_type='text/markdown',
     keywords=['aws', 'budget'],
-    version='0.0.5',
+    version='0.0.6',
     author='Dylan Sather',
     author_email='dylan.sather@gmail.com',
     url='https://github.com/dylburger/aws-budgets-cli',
