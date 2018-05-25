@@ -5,7 +5,7 @@ setup(
     version='0.0.1',
     py_modules=['awsbudget'],
     install_requires=[
-        'boto3'
+        'boto3',
         'Click',
     ],
     entry_points='''
