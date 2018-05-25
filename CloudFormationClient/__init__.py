@@ -1,11 +1,13 @@
 import boto3
 from botocore.exceptions import ClientError
+from pkg_resources import resource_filename
 
 TEMPLATE_FILE = 'budgets.template.yaml'
 
 
 def read_cf_template():
-    with open(TEMPLATE_FILE, 'r') as f:
+    filepath = resource_filename(__name__, TEMPLATE_FILE)
+    with open(filepath, 'r') as f:
         return f.read()
 
 

@@ -9,7 +9,7 @@ setup(
     long_description=long_description,
     long_description_content_type='text/markdown',
     keywords=['aws', 'budget'],
-    version='0.0.3',
+    version='0.0.5',
     author='Dylan Sather',
     author_email='dylan.sather@gmail.com',
     url='https://github.com/dylburger/aws-budgets-cli',
@@ -20,6 +20,7 @@ setup(
     install_requires=[
         'boto3',
         'click',
+        'setuptools',
     ],
     entry_points='''
         [console_scripts]
@@ -29,5 +30,6 @@ setup(
         'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
-    )
+    ),
+    zip_safe=False
 )
