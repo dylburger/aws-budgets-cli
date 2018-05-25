@@ -1,22 +1,22 @@
 ## awsbudget
 
-`awsbudget` is a small command-line utility for creating simple [AWS Budgets](https://aws.amazon.com/aws-cost-management/aws-budgets/).
+`awsbudget` is a small, Python command-line utility for creating simple [AWS Budgets](https://aws.amazon.com/aws-cost-management/aws-budgets/).
 
 At the moment, this tool was built to solve a very simple use case - you want to create a *single* budget in USD, with notifications at three levels:
 
 * You are _projected_ to spend greater than 80% of your budget
 * You have spent greater than 70% of your budget
-* You've spend 100% of your budget
+* You've spent 100% of your budget
 
 and you want these notifications to go directly to an email address (vs. to an SNS topic).
 
-Behind the scenes, we create a CloudFormation template to manage this budget in the default region tied to your account.
+Behind the scenes, we create a CloudFormation stack using the [template in this repo](templates/budgets.template.yaml) to manage this budget in the default region tied to your account.
 
-**This tool uses [boto3](https://github.com/boto/boto3) to make requests to AWS**. `boto3` looks for your AWS credentials and profile information in [a few different places](http://boto3.readthedocs.io/en/latest/guide/configuration.html).
+**This tool uses [boto3](https://github.com/boto/boto3) to make requests to AWS**. If you're having trouble authenticating to the correct account, note that `boto3` looks for your AWS credentials and profile information in [a few different places](http://boto3.readthedocs.io/en/latest/guide/configuration.html).
 
 #### Installation
 
-Within your target virtual environment, run
+Within your target Python virtual environment, run
 
     pip install awsbudget
 
