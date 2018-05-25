@@ -1,4 +1,4 @@
-### awsbudget
+## awsbudget
 
 `awsbudget` is a small command-line utility for creating simple [AWS Budgets](https://aws.amazon.com/aws-cost-management/aws-budgets/).
 
