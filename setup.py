@@ -7,6 +7,7 @@ setup(
     install_requires=[
         'boto3',
         'Click',
+        'CloudFormationClient'
     ],
     entry_points='''
         [console_scripts]
