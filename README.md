@@ -1,4 +1,4 @@
-## awsbudget
+# awsbudget
 
 `awsbudget` is a small, Python command-line utility for creating simple [AWS Budgets](https://aws.amazon.com/aws-cost-management/aws-budgets/).
 
@@ -14,7 +14,7 @@ Behind the scenes, we create a CloudFormation stack using the [template in this 
 
 **This tool uses [boto3](https://github.com/boto/boto3) to make requests to AWS**. If you're having trouble authenticating to the correct account, note that `boto3` looks for your AWS credentials and profile information in [a few different places](http://boto3.readthedocs.io/en/latest/guide/configuration.html).
 
-#### Installation
+## Installation
 
 Within your target Python virtual environment, run
 
@@ -24,7 +24,7 @@ or `git clone` this repository, then from the root of the repo, run
 
     pip install .
 
-#### Usage
+## Usage
 
 Run `awsbudget --help` to get a full list of options.
 
@@ -50,4 +50,3 @@ Note that you can specify that `awsbudget` use a specific AWS profile defined in
     awsbudget --new --profile personal
 
 This can be useful when creating budgets for multiple AWS accounts.
-
