@@ -26,16 +26,11 @@ def generate_new_budget(admin_email, budget, profile):
 
 
 @click.command()
-@click.option('--list_budgets', is_flag=True, help="List any existing budgets")
 @click.option('--new', '-n', is_flag=True, help="Create a new AWS budget")
 @click.option('--admin_email', '-e', default=None, help="The email address to which budget notifications are sent")
 @click.option('--budget', '-b', default=None, help="The budget (in USD) you want to set")
 @click.option('--profile', '-p', default=None, help="AWS profile name")
-def cli(list_budgets, new, admin_email, budget, profile):
-    if list_budgets is True:
-        click.echo("Listing budgets here")
-        return
-
+def cli(new, admin_email, budget, profile):
     if new is True:
         generate_new_budget(admin_email, budget, profile)
         return
